@@ -1,0 +1,6 @@
+---
+- name: Restart Splunk
+  service:
+    name: splunkd
+    enabled: yes
+    state: restarted

@@ -1,0 +1,9 @@
+---
+- name: "Install Splunk Indexer"
+  hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+    - name: "Running Role: Splunk"
+      include_role:
+        name: Splunk
