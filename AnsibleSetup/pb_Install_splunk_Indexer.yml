@@ -1,0 +1,9 @@
+---
+- hosts: Splunk
+  become: true
+  become_method: sudo
+  strategy: free
+  tasks:
+    - name: Add Splunk
+      include_role:
+        name: Splunk

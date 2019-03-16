@@ -1,0 +1,9 @@
+---
+- hosts: SplunkFwd
+  become: true
+  become_method: sudo
+  strategy: free
+  tasks:
+    - name: Add SplunkForwarder
+      include_role:
+        name: SplunkForwarder

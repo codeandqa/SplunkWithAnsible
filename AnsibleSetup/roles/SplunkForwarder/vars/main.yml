@@ -1,4 +1,21 @@
 ---
-# vars file for SplunkForwarder
+# wget -O splunkforwarder-7.2.4-8a94541dcfac-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.4&product=universalforwarder&filename=splunkforwarder-7.2.4-8a94541dcfac-linux-2.6-x86_64.rpm&wget=true'
+splunk_instance: 192.168.10.51:9997
+
+splunk_user: "splunk"
+splunk_group: "splunk"
+splunk_uid: "10011"
+splunk_gid: "10011"
+splunk_release: "7.2.4"
+splunk_url: "https://download.splunk.com/products/universalforwarder/releases/{{ splunk_release }}/linux"
+splunk_rpm_file: "splunkforwarder-7.2.4-8a94541dcfac-linux-2.6-x86_64.rpm"
+splunk_rpm: "{{ splunk_url }}/{{ splunk_rpm_file }}"
+splunk_rpm_checksum: "md5:5b2df276acb22c3dd5f3f9245dfdc689"
+
+splunk_indexer: "{{ splunk_instance }}"
+splunk_index: "my-indexer-name"
+
 splunk_admin_username: "admin"
 splunk_admin_password: "Password1!"
+
+

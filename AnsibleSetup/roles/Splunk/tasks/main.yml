@@ -21,6 +21,9 @@
     dest: "/tmp/{{ splunk_rpm_file }}"
 
 - name: Install Splunk
+  become: yes
+  become_user: root
+  become_method: sudo
   yum:
     name: "/tmp/{{ splunk_rpm_file }}"
     state: present
@@ -36,7 +39,7 @@
     dest: "/opt/splunk/etc/system/local/user-seed.conf"
     mode: 0600
     content: |
-      USER={{ splunk_admin_username}}
+      [user_info]
       PASSWORD={{ splunk_admin_password }}
 
 - name: Add inputs.config file
@@ -72,9 +75,9 @@
   become_method: sudo
   shell: /opt/splunk/bin/splunk start --accept-license --answer-yes
 
-- name: Start Splunk Server
-  become: yes
-  become_user: splunk
-  become_method: sudo
-  shell: /opt/splunk/bin/splunk enable boot-start
-  notify: Restart Splunk
+# - name: Start Splunk Server
+#   become: yes
+#   become_user: splunk
+#   become_method: sudo
+#   shell: /opt/splunk/bin/splunk enable boot-start
+#   notify: Restart Splunk
