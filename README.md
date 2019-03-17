@@ -17,7 +17,7 @@ Following Items Should Be Installed On Your Machine(I Am Using Mac )
 2. Install Vagrant. (https://www.vagrantup.com/intro/getting-started/install.html)
 
 ## Idea:
-https://ibb.co/xH3cxFJ
+![alt text](https://ibb.co/xH3cxFJ)
 
 ## Steps:
 
