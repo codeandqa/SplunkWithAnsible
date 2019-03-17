@@ -79,7 +79,7 @@
 - name: Start Splunk Server
   become: yes
   become_user: splunk
-  become_method: sudo
+  # become_method: sudo
   shell: /opt/splunk/bin/splunk start --accept-license --answer-yes
 
 # - name: Start Splunk Server
