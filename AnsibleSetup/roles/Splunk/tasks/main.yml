@@ -50,6 +50,13 @@
     group: "{{ splunk_group }}"
     backup: yes
 
+- name: Add indexes.conf
+  become: yes
+  become_user: splunk
+  template:
+    src: indexes.conf
+    dest: /opt/splunk/etc/system/local/indexes.conf
+
 - name: Add outputs.config file
   template:
     src: outputs.conf
