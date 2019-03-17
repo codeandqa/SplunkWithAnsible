@@ -1,3 +1,4 @@
+
 # Installation Of Splunk Indexer And Forwarder Using Ansible
 
 Current Project Will Install Following Vms.
@@ -21,14 +22,30 @@ Following Items Should Be Installed On Your Machine(I Am Using Mac )
 	2. Splunk: Splunk Indexer.
 	3. Web: Web Server And Splunk Forwarder.
 - ssh to ansible server by:
-`vagrant ssh asc`
-- go to the folder where we have ansbile script.
-`cd /tmp/ansible`
-- run ansible playbook to install Splunk indexer on 'splunk' vm. 
-`ansible-playbook playbook.yml i inventory`
+
+    `vagrant ssh asc`
+
+- Go to the folder where we have ansbile script.
+
+    `cd /tmp/ansible`
+
+- Run ansible playbook to install Splunk indexer on 'splunk' vm. 
+
+    `ansible-playbook playbook.yml i inventory`
+
 - This will install Splunk on another VM 'splunk' and start on port 8000.
-- Open browser in host machine and open `http://127.0.0.1:8000`.
+- Open browser in host machine and open 
+`http://127.0.0.1:8000`.`
+
+Note: useful command to add ssh key to remot machine
+
+    ssh-keygen -t rsa
+    cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> .ssh/authorized_keys'
+
 
 # Installation for webserver and splunk indexer is coming soon. 
 
 # Stay Tuned
+
+
+
