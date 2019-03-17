@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
     django.ssh.password="vagrant"
     django.vm.network "forwarded_port", guest: 8089, host: 8088
     django.vm.network "forwarded_port", guest: 8080, host: 8080
-    django.vm.provision "file", source: "AnsibleSetup/data", destination: "/tmp/"
+    django.vm.provision "file", source: "AnsibleSetup/data/serverlog.json", destination: "/tmp/serverlog.json"
     django.vm.provision "shell", inline: "sudo yum -y update"
   end
 
