@@ -1,51 +1,81 @@
 
+  
+
 # Installation Of Splunk Indexer And Forwarder Using Ansible
 
-Current Project Will Install Following Vms.
-1. Ansible Server
-2. Webserver With Splunk Forwarder
-3. Splunk Indexer To Index Data Coming From Webserver.
+## Introduction:
+This purpose of this repo is to install Splunk Indexer on one host and forwarder on another (along with web app). To achieve this in isolated environment, this repo will  install three VMs.
 
+TBD: There are few steps you need to do manually for now. Once I get time, I will automate them.
 
-## Prereq: 
+## Prereq:
+
 Following Items Should Be Installed On Your Machine(I Am Using Mac )
+
 1. Virtualbox Has Been Installed In Your Machine. (Https://Www.Virtualbox.Org/)
-2. Install Vagrant.
+
+2. Install Vagrant. (https://www.vagrantup.com/intro/getting-started/install.html)
+
+## Idea:
+[![](https://ibb.co/xH3cxFJ)](https://ibb.co/xH3cxFJ)
 
 ## Steps:
-- Close Repo In Your Machine.
-- Go To The Terminal And Navigate To The Cloned Folder.
-- Run Command:
-`vagrant Up`
-	It Will Install Three VMs,
-	1. Asc: Ansible Server To Run Ansible Scripts.
-	2. Splunk: Splunk Indexer.
-	3. Web: Web Server And Splunk Forwarder.
-- ssh to ansible server by:
 
-    `vagrant ssh asc`
+###### Step 1
+Clone this repo in your desired working folder.
 
-- Go to the folder where we have ansbile script.
+    git clone git@github.com:codeandqa/SplunkWithAnsible.git
+    cd /SplunkWithAnsible
+###### Step 2
+  Run vagrant command to get all VMs.
+      
 
-    `cd /tmp/ansible`
+    vagrant up
+   
+   You will get follwing three VMs,
 
-- Run ansible playbook to install Splunk indexer on 'splunk' vm. 
+	Ansible Server; (acs)
+	Splunk Forwarder. (django)
+	Splunk Indexer. (splunk)
+###### Step 3
+   (Note: this may take few minutes ~10)
 
-    `ansible-playbook playbook.yml i inventory`
+SSH to acs machine.
+     vagrant ssh acs
 
-- This will install Splunk on another VM 'splunk' and start on port 8000.
-- Open browser in host machine and open 
-`http://127.0.0.1:8000`.`
+###### Step 4
+Generate ssh key and connect to both servers, Indexer and forwarder.
 
-Note: useful command to add ssh key to remot machine
+     ssh-keygen -t rsa
+     cat ~/.ssh/id_rsa.pub | ssh vagrant@192.168.10.51 'cat >> .ssh/authorized_keys'
+     cat ~/.ssh/id_rsa.pub | ssh vagrant@192.168.10.52 'cat >> .ssh/authorized_keys'
+     
 
-    ssh-keygen -t rsa
-    cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> .ssh/authorized_keys'
+###### Step 5
+Once you are connected, ansible server will be able to authenticate with no password prompt.
+###### Step 6
+Go to temp folder and clone same repo there as git already intalled in acs machine.
+    cd /tmp/
+    git clone git@github.com:codeandqa/SplunkWithAnsible.git 
+    
+###### Step 7
+Go to the cloned folder to run playbook.
+
+    cd SplunkWithAnsible/AnsibleSetup
+    ./run.sh
+
+###### Step 8
+That will run two playbooks, one for Splunk(x.x.x.51) and another of Splunk Forwarder(x.x.x.52) in parallel. It will install and start splunk servers. 
+
+###### Step 9
+Open `127.0.0.1:8000` in host machine browser.
 
 
-# Installation for webserver and splunk indexer is coming soon. 
+    User: admin,
+    Password: Password1!
 
-# Stay Tuned
+###### Step 10
+Happy Splunking!!!
 
-
-
+# What to make this repo better?
+I am not ansible guru. I am going to refactor it and clean the code slowly. If you think that you can improve this code more clean and better, feel free to contrubute. 
