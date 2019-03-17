@@ -29,6 +29,12 @@ Following Items Should Be Installed On Your Machine(I Am Using Mac )
 - This will install Splunk on another VM 'splunk' and start on port 8000.
 - Open browser in host machine and open `http://127.0.0.1:8000`.
 
+Note: useful command to add ssh key to remot machine
+`
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> .ssh/authorized_keys'
+`
+
 # Installation for webserver and splunk indexer is coming soon. 
 
 # Stay Tuned

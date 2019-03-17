@@ -11,10 +11,9 @@ Vagrant.configure("2") do |config|
     acs.vm.box ="bento/centos-7.2"
     acs.vm.hostname = "acs"
     acs.vm.network "private_network", ip: "192.168.10.50"
-    # acs.vm.provision "file", source: "AnsibleSetup/", destination: "/tmp/ansible"
-    # acs.vm.provision "shell", inline: "sudo yum -y update"
+    acs.vm.provision "shell", inline: "sudo yum -y update"
     acs.vm.provision "shell", inline: "sudo yum -y install ansible"
-    # acs.vm.provision "shell", inline: "sudo yum -y install git"
+    acs.vm.provision "shell", inline: "sudo yum -y install git"
   end
   
   config.vm.define "splunk" do |splunk|
@@ -24,8 +23,8 @@ Vagrant.configure("2") do |config|
     splunk.ssh.password="vagrant"
     splunk.vm.network "forwarded_port", guest: 8000, host: 8000
     splunk.vm.network "forwarded_port", guest: 8089, host: 8089
-    splunk.vm.network "forwarded_port", guest: 5000, host: 5000
-    # splunk.vm.provision "shell", inline: "sudo yum -y update"
+    splunk.vm.network "forwarded_port", guest: 9997, host: 5050
+    splunk.vm.provision "shell", inline: "sudo yum -y update"
   end 
 
   config.vm.define "django" do |django|
@@ -33,10 +32,10 @@ Vagrant.configure("2") do |config|
     django.vm.hostname = "django"
     django.vm.network "private_network", ip: "192.168.10.52"
     django.ssh.password="vagrant"
+    django.vm.network "forwarded_port", guest: 8089, host: 8088
     django.vm.network "forwarded_port", guest: 8080, host: 8080
-    django.vm.network "forwarded_port", guest: 5000, host: 1234
     django.vm.provision "file", source: "AnsibleSetup/data", destination: "/tmp/"
-    # django.vm.provision "shell", inline: "sudo yum -y update"
+    django.vm.provision "shell", inline: "sudo yum -y update"
   end
 
   
