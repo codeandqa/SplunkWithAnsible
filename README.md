@@ -61,7 +61,7 @@ Go to temp folder and clone same repo there as git already intalled in acs machi
 Go to the cloned folder to run playbook.
 
     cd SplunkWithAnsible/AnsibleSetup
-    ./run.sh
+    ./playsetup.sh
 
 ###### Step 8
 That will run two playbooks, one for Splunk(x.x.x.51) and another of Splunk Forwarder(x.x.x.52) in parallel. It will install and start splunk servers. 
