@@ -17,7 +17,11 @@ Following Items Should Be Installed On Your Machine(I Am Using Mac )
 2. Install Vagrant. (https://www.vagrantup.com/intro/getting-started/install.html)
 
 ## Idea:
+<<<<<<< HEAD
 [![](https://ibb.co/xH3cxFJ)](https://ibb.co/xH3cxFJ)
+=======
+![alt text](https://ibb.co/xH3cxFJ)
+>>>>>>> 3191563b1152cebf3f992067610082f8a1fa518a
 
 ## Steps:
 
@@ -78,4 +82,8 @@ Open `127.0.0.1:8000` in host machine browser.
 Happy Splunking!!!
 
 # What to make this repo better?
+<<<<<<< HEAD
 I am not ansible guru. I am going to refactor it and clean the code slowly. If you think that you can improve this code more clean and better, feel free to contrubute. 
+=======
+I am not ansible guru. I am going to refactor it and clean the code slowly. If you think that you can improve this code more clean and better, feel free to contrubute. 
+>>>>>>> 3191563b1152cebf3f992067610082f8a1fa518a
