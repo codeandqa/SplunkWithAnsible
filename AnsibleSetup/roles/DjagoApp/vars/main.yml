@@ -1,4 +1,0 @@
----
-# vars file for SplunkForwarder
-splunk_admin_username: "admin"
-splunk_admin_password: "Password1!"
