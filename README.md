@@ -57,6 +57,7 @@ Generate ssh key and connect to both servers, Indexer and forwarder.
 
 ##### Step 5
 Once you are connected, ansible server will be able to authenticate with no password prompt.
+
 ##### Step 6
 Go to temp folder and clone same repo there as git already intalled in acs machine.
     
