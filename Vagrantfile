@@ -41,7 +41,8 @@ Vagrant.configure("2") do |config|
     django.ssh.password="vagrant"
     django.vm.network "forwarded_port", guest: 8089, host: 8088
     django.vm.network "forwarded_port", guest: 8080, host: 8080
-    django.vm.provision "file", source: "AnsibleSetup/data/serverlog.json", destination: "/tmp/serverlog.json"
+    # django.vm.provision "file", source: "AnsibleSetup/data/serverlog.json", destination: "/tmp/serverlog.json"
     django.vm.provision "shell", inline: UPDATE_YUM
+    django.vm.provision "shell", inline: "while true; do curl -k 'https://cloud.iexapis.com/beta/stock/aapl/quote?token=pk_1e76b57a49384850be13f707ef8d7ba1' >> /tmp/serverlog.json ; sleep 5; done"
   end
 end
