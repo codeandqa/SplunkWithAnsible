@@ -18,14 +18,15 @@ Following Items Should Be Installed On Your Machine(I Am Using Mac )
 
 ## Idea:
 ![alt tag](https://github.com/codeandqa/SplunkWithAnsible/blob/master/SplukServer.png)
-## Steps:
 
-###### Step 1
+## Setup:
+
+##### Step 1
 Clone this repo in your desired working folder.
 
     git clone git@github.com:codeandqa/SplunkWithAnsible.git
     cd /SplunkWithAnsible
-###### Step 2
+##### Step 2
   Run vagrant command to get all VMs.
       
 
@@ -36,13 +37,17 @@ Clone this repo in your desired working folder.
 	Ansible Server; (acs)
 	Splunk Forwarder. (django)
 	Splunk Indexer. (splunk)
-###### Step 3
-   (Note: this may take few minutes ~10)
+	
+   (Note: This may take few minutes ~10)
+
+##### Step 3
+   
 
 SSH to acs machine.
+     
      vagrant ssh acs
 
-###### Step 4
+##### Step 4
 Generate ssh key and connect to both servers, Indexer and forwarder.
 
      ssh-keygen -t rsa
@@ -50,30 +55,34 @@ Generate ssh key and connect to both servers, Indexer and forwarder.
      cat ~/.ssh/id_rsa.pub | ssh vagrant@192.168.10.52 'cat >> .ssh/authorized_keys'
      
 
-###### Step 5
+##### Step 5
 Once you are connected, ansible server will be able to authenticate with no password prompt.
-###### Step 6
+##### Step 6
 Go to temp folder and clone same repo there as git already intalled in acs machine.
+    
     cd /tmp/
     git clone git@github.com:codeandqa/SplunkWithAnsible.git 
     
-###### Step 7
+##### Step 7
 Go to the cloned folder to run playbook.
 
     cd SplunkWithAnsible/AnsibleSetup
     ./playsetup.sh
 
-###### Step 8
+##### Step 8
 That will run two playbooks, one for Splunk(x.x.x.51) and another of Splunk Forwarder(x.x.x.52) in parallel. It will install and start splunk servers. 
 
-###### Step 9
+##### Step 9
 Open `127.0.0.1:8000` in host machine browser.
 
 
     User: admin,
     Password: Password1!
 
-###### Step 10
+##### Step 10
+try to search with your index; `index='server-log'`. If you do not see any result Try to go to `Settings>Monitoring Control> Forwarders>Forwareder Instance>`. Enable the forwareder Instance
+
+##### Step 11
 Happy Splunking!!!
 
 # Want to make this repo better?
