@@ -86,4 +86,4 @@ try to search with your index; `index='server-log'`. If you do not see any resul
 Happy Splunking!!!
 
 # Want to make this repo better?
-I am not ansible or splunk guru so you may find some erros or missing best practices. I am going to refactor it and clean the code slowly. If you think that you can improve this code more cleaner and better, feel free to contrubute. 
+I am not ansible or splunk guru so you may find some erros or missing best practices. I am going to refactor it and clean the code slowly. If you think that you can improve this code more cleaner and better, feel free to contrubute.
