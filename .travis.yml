@@ -9,6 +9,7 @@ before_install:
 
 install:
   - pip install ansible==2.2.1.0
+  - pip install urllib3 pyopenssl ndg-httpsclient pyasn1
   - "printf '[defaults]\\nroles_path = ../\\n' >> ansible.cfg"
   - "printf '[ssh_connection]\\npipelining = True\\n' >> ansible.cfg"
 
