@@ -6,7 +6,7 @@ env:
 
 branches:
   only:
-  - master
+  - Testing
 #  - stable
 
 services:
