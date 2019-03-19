@@ -19,6 +19,9 @@ before_install:
 
 
 install:
+  - sudo yum install python36u
+  - sudo yum install python36u-pip
+  - sudo yum install python36u-devel
   - pip3 install ansible==2.2.1.0
   - pip3 install -U urllib3[secure]
   - pip3 install pyopenssl ndg-httpsclient pyasn1
