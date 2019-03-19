@@ -1,36 +1,25 @@
 ---
-language: python
-
-python: "3.6.5"
-
+sudo: required
 env:
-  matrix:
-  - OS_TYPE=centos OS_VERSION=7
-  
+  #matrix:
+  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=2.7.9
+
+branches:
+  only:
+  - master
+#  - stable
+
 services:
   - docker
-  
+
 before_install:
   - sudo apt-get update
+  - sudo apt-get upgrade lxc-docker
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
-  - sudo docker pull centos:centos${OS_VERSION}
+  - sudo docker pull weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION}
 
-
-install:
-  - sudo yum install python36u
-  - sudo yum install python36u-pip
-  - sudo yum install python36u-devel
-  - pip3 install ansible==2.2.1.0
-  - pip3 install -U urllib3[secure]
-  - pip3 install pyopenssl ndg-httpsclient pyasn1
-  - "printf '[defaults]\\nroles_path = ../\\n' >> ansible.cfg"
-  - "printf '[ssh_connection]\\npipelining = True\\n' >> ansible.cfg"
-
-before_script:
-  - echo localhost > inventory
-  - ansible-galaxy install --role-file requirements.yml
 
 script:
   - ansible-playbook --syntax-check -i inventory AnsibleSetup/roles/Splunk/tests/test.yml
