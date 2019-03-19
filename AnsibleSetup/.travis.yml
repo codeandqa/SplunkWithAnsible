@@ -17,8 +17,8 @@ before_script:
   - ansible-galaxy install --role-file requirements.yml
 
 script:
-  - ansible-playbook --syntax-check -i inventory tests/test.yml
-  - ansible-playbook -i inventory tests/test.yml --connection=local --sudo
+  - ansible-playbook --syntax-check -i inventory roles/Splunk/tests/test.yml
+  - ansible-playbook -i inventory roles/Splunk/tests/test.yml --connection=local --sudo
   # Taken from https://servercheck.in/blog/testing-ansible-roles-travis-ci-github
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
