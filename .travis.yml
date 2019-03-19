@@ -1,7 +1,7 @@
 ---
 language: python
 
-python: "2.7.9"
+python: "3.6.5"
 
 env:
   matrix:
@@ -19,9 +19,9 @@ before_install:
 
 
 install:
-  - pip install ansible==2.2.1.0
-  - pip install -U urllib3[secure]
-  - pip install pyopenssl ndg-httpsclient pyasn1
+  - pip3 install ansible==2.2.1.0
+  - pip3 install -U urllib3[secure]
+  - pip3 install pyopenssl ndg-httpsclient pyasn1
   - "printf '[defaults]\\nroles_path = ../\\n' >> ansible.cfg"
   - "printf '[ssh_connection]\\npipelining = True\\n' >> ansible.cfg"
 
