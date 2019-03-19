@@ -24,7 +24,7 @@ script:
   # Taken from https://servercheck.in/blog/testing-ansible-roles-travis-ci-github
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
-    ansible-playbook -i inventory tests/test.yml --connection=local --sudo
+    ansible-playbook -i inventory AnsibleSetup/roles/Splunk/tests/test.yml --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
