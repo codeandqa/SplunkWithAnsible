@@ -20,12 +20,12 @@ before_install:
   - sudo docker RUN yum -y update
 
       # Install requirements.
-  - sudo docker RUN yum -y install deltarpm epel-release initscripts 
-  - sudo docker run yum -y update
-  - sudo docker run yum -y install python-pip
+  # - sudo docker RUN yum -y install deltarpm epel-release initscripts 
+  # - sudo docker run yum -y update
+  # - sudo docker run yum -y install python-pip
 
       # Install Ansible via Pip.
-  - sudo docker RUN pip install ansible
+  # - sudo docker RUN pip install ansible
 
 
 script:
