@@ -17,7 +17,7 @@ before_install:
   - sudo service docker restart
   - sleep 5
   - sudo docker pull centos
-  - sudo docker yum -y install ansible
+  - sudo docker RUN yum -y install ansible
 
 script:
   - ansible-playbook --syntax-check -i inventory AnsibleSetup/roles/Splunk/tests/test.yml
