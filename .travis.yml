@@ -39,15 +39,7 @@ before_install:
 
       # Install Ansible via Pip.
   - sudo docker RUN pip install ansible
-      # Disable requiretty.
-  - sudo docker RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
-      # Install Ansible inventory file.
-  - sudo docker RUN mkdir -p /etc/ansible
-  - sudo docker RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
-
-  - sudo docker VOLUME ["/sys/fs/cgroup"]
-  - sudo docker CMD ["/usr/lib/systemd/systemd"]
 
 script:
   - ansible-playbook --syntax-check -i inventory AnsibleSetup/roles/Splunk/tests/test.yml
