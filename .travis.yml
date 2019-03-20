@@ -1,5 +1,6 @@
 ---
 sudo: required
+
 env:
   - distribution: centos
     version: 7
@@ -16,14 +17,6 @@ before_install:
   - 'sudo docker pull ${distribution}:${version}'
   - 'sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis'
 
-
-      # Install requirements.
-  # - sudo docker RUN yum -y install deltarpm epel-release initscripts 
-  # - sudo docker run yum -y update
-  # - sudo docker run yum -y install python-pip
-
-      # Install Ansible via Pip.
-  # - sudo docker RUN pip install ansible
 script:
   - container_id=$(mktemp)
   - 'sudo docker run --detach --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --volume="${PWD}":AnsibleSetup/roles/Splunk:ro ${distribution}-${version}:ansible > "${container_id}"'
