@@ -1,13 +1,11 @@
 ---
 sudo: required
-env:
-  #matrix:
-  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=2.7.9
+# env:
+#   - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=2.7.9
 
 branches:
   only:
   - Testing
-#  - stable
 
 services:
   - docker
@@ -19,9 +17,7 @@ before_install:
   - sudo service docker restart
   - sleep 5
   - sudo docker pull centos
-  - sudo docker pull ansible
-  # - sudo docker pull weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION}
-
+  - sudo docker yum -y install ansible
 
 script:
   - ansible-playbook --syntax-check -i inventory AnsibleSetup/roles/Splunk/tests/test.yml
