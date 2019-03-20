@@ -38,8 +38,7 @@ before_install:
       && yum clean all
 
       # Install Ansible via Pip.
-  - sudo docker RUN pip install $pip_packages
-
+  - sudo docker RUN pip install ansible
       # Disable requiretty.
   - sudo docker RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
 
