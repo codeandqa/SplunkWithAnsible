@@ -17,7 +17,7 @@ before_install:
   - sudo service docker restart
   - sleep 5
   - sudo docker pull centos
-  - sudo docker RUN yum -y update
+  - sudo docker run yum -y update
 
       # Install requirements.
   # - sudo docker RUN yum -y install deltarpm epel-release initscripts 
