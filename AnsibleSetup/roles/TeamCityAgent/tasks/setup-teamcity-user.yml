@@ -14,10 +14,11 @@
 - name: "Create teamcity user:'teamcity'"
   user:
     name: "{{ teamcity_agent_user }}"
-    groups: "{{teamcity_agent_group}}", "{{ teamcity_agent_docker_group }}"
+    groups: "{{teamcity_agent_group}}, {{ teamcity_agent_docker_group }}"
     state: present
     shell: /bin/bash
     createhome: yes
     system: yes
-    home: "/home/{{teamcity_agent_user}}/teamcity"
+    create_home: true
+    home: "/home/{{teamcity_agent_user}}"
 
