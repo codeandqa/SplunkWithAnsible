@@ -12,7 +12,7 @@
 - name: "Download Agent Package"
   get_url:
     url: "http://{{ teamcity_agent_server_url }}/update/buildAgent.zip"
-    dest: /tmp/
+    dest: /tmp
     validate_certs: no
     timeout: 60
   register: _teamcity_agent_package
@@ -27,14 +27,6 @@
     copy: "no"
   when: _teamcity_agent_package|changed
 
-# Delete existing buildAgent.dist.properties config file
-- name: Change file ownership, group and permissions
-  file:
-    path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
-    owner: teamcity
-    group: teamcity
-    mode: '0644'
-
 - name: add TeamCity agent configuration
   template:
     src: "buildAgent.properties.j2"
@@ -42,11 +34,15 @@
     owner: "{{ teamcity_agent_user }}"
     group: "{{ teamcity_agent_group }}"
     mode: 0644
-  notify: restart TeamCity service
-
 
 - name: assign permission to the agent.
   file:
     path: "{{ teamcity_agent_home }}/bin/agent.sh"
     state: file
     mode: '0755'
+
+- name: Run teamcity Agen
+  command: sudo - {{ teamcity_agent_user }} {{ teamcity_agent_home }}/bin/agent.sh start
+
+- pause:
+    minutes: 30

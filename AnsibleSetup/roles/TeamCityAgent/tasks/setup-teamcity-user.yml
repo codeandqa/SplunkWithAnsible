@@ -19,6 +19,6 @@
     shell: /bin/bash
     createhome: yes
     system: yes
-    create_home: true
-    home: "/home/{{teamcity_agent_user}}"
+    createhome: true
+    home: "/home/{{teamcity_agent_user}}/teamcity"
 
