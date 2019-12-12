@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     acs.vm.network "private_network", ip: "192.168.10.50"
     acs.vm.provision "shell", inline: "sudo yum -y update"
     acs.vm.provision "shell", inline: "sudo yum -y install ansible"
-    acs.vm.provision "shell", inline: "sudo yum -y install git"
+    acs.vm.provision "shell", inline: "sudo yum -y install git unzip"
   end
   
   config.vm.define "splunk" do |splunk|
@@ -25,6 +25,8 @@ Vagrant.configure("2") do |config|
     splunk.vm.network "forwarded_port", guest: 8089, host: 8089
     splunk.vm.network "forwarded_port", guest: 9997, host: 5050
     splunk.vm.provision "shell", inline: "sudo yum -y update"
+    splunk.vm.provision "shell", inline: "sudo yum -y install git unzip"
+
   end 
 
   config.vm.define "django" do |django|
@@ -36,6 +38,7 @@ Vagrant.configure("2") do |config|
     django.vm.network "forwarded_port", guest: 8080, host: 8080
     django.vm.provision "file", source: "AnsibleSetup/data/serverlog.json", destination: "/tmp/serverlog.json"
     django.vm.provision "shell", inline: "sudo yum -y update"
+    django.vm.provision "shell", inline: "sudo yum -y install git unzip"
   end
 
   
