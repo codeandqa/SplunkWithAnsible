@@ -28,11 +28,6 @@
   when: _teamcity_agent_package|changed
 
 # Delete existing buildAgent.dist.properties config file
-- name: Clean buildAgent.dist.properties file
-  file:
-    state: absent
-    path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
-
 - name: Change file ownership, group and permissions
   file:
     path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
@@ -48,3 +43,10 @@
     group: "{{ teamcity_agent_group }}"
     mode: 0644
   notify: restart TeamCity service
+
+
+- name: assign permission to the agent.
+  file:
+    path: "{{ teamcity_agent_home }}/bin/agent.sh"
+    state: file
+    mode: '0755'
