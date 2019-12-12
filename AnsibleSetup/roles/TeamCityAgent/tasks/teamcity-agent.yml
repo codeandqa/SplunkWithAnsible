@@ -33,6 +33,13 @@
     state: absent
     path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
 
+- name: Change file ownership, group and permissions
+  file:
+    path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
+    owner: teamcity
+    group: teamcity
+    mode: '0644'
+
 - name: add TeamCity agent configuration
   template:
     src: "buildAgent.properties.j2"
