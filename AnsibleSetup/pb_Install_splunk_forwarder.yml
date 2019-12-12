@@ -4,6 +4,6 @@
   become_method: sudo
   strategy: free
   tasks:
-    - name: Add SplunkForwarder
+    - name: Add TeamCityAgent
       include_role:
-        name: SplunkForwarder
+        name: TeamCityAgent

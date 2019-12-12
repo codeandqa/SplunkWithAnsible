@@ -1,5 +1,5 @@
-[Splunk]
-192.168.10.51
-
 [SplunkFwd]
+192.168.10.52
+
+[TeamCityAgent]
 192.168.10.52

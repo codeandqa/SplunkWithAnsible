@@ -1,0 +1,10 @@
+---
+# vars file for TeamCityAgent
+install_flavor: 'openjdk'
+java_jdk_version: '8'
+teamcity_agent_server_url: 'https://teamcity.exacttarget.com'
+teamcity_agent_group: 'teamcity'
+teamcity_agent_user: 'teamcity'
+teamcity_agent_home: '/home/{{user}}/teamcity'
+teamcity_agent_docker_group: 'docker'
+teamcity_agent_install_dir: '/opt/buildAgent'
