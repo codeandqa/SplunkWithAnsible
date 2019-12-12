@@ -1,40 +1,23 @@
 ---
 - name: "Create teamcity group: 'teamcity'"
   group:
-    name: "{{ teamcity_agent_group }}"
+    name: teamcity
     state: present
     system: yes
 
 - name: "Create teamcity group: 'docker'"
   group:
-    name: "{{ teamcity_agent_docker_group }}"
+    name: docker
     state: present
     system: yes
 
-- name: "Create teamcity user: teamcity and add to the group: teamcity & docker"
+- name: "Create teamcity user:'teamcity'"
   user:
-    name: "{{ teamcity_agent_user }}"
-    groups: "{{ teamcity_agent_group }}", "{{ teamcity_agent_docker_group }}"
+    name: teamcity
+    groups: teamcity, docker
     state: present
     shell: /bin/bash
     createhome: yes
     system: yes
-    home: "{{ teamcity_agent_home }}"
-
-
-- name: "Create teamcity docker group"
-  group:
-    name: "{{ teamcity_agent_docker_group }}"
-    state: present
-    system: yes
-
-- name: "Create teamcity user"
-  user:
-    name: "{{ teamcity_agent_user }}"
-    group: "{{ teamcity_agent_group }}"
-    state: present
-    shell: /bin/bash
-    createhome: yes
-    system: yes
-    home: "{{ teamcity_agent_home }}"
+    home: /home/teamcity/teamcity
 
