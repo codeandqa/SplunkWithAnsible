@@ -12,7 +12,7 @@
 - name: "Download Agent Package"
   get_url:
     url: "http://{{ teamcity_agent_server_url }}/update/buildAgent.zip"
-    dest: /tmp
+    dest: /tmp/
     validate_certs: no
     timeout: 60
   register: _teamcity_agent_package
@@ -27,9 +27,17 @@
     copy: "no"
   when: _teamcity_agent_package|changed
 
-# Delete existing buildAgent.dist.properties config file
-- name: Clean buildAgent.dist.properties file
-  file:
-    state: absent
-    path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
+# # Delete existing buildAgent.dist.properties config file
+# - name: Clean buildAgent.dist.properties file
+#   file:
+#     state: absent
+#     path: "{{ teamcity_agent_home }}/conf/buildAgent.dist.properties"
 
+- name: add TeamCity agent configuration
+  template:
+    src: "buildAgent.properties.j2"
+    dest: "{{ teamcity_agent_install_dir }}/conf/buildAgent.properties"
+    owner: "{{ teamcity_agent_user }}"
+    group: "{{ teamcity_agent_group }}"
+    mode: 0644
+  notify: restart TeamCity service
