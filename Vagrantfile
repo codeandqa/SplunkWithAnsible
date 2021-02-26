@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
     acs.vm.hostname = "acs"
     acs.vm.network "private_network", ip: NETWORK_PRIVATE_IP_PREFIX + "0"
     acs.vm.provision "shell", inline: UPDATE_YUM
+    acs.vm.provision "shell", inline: "sudo yum install epel-release"
     acs.vm.provision "shell", inline: "sudo yum -y install ansible"
     acs.vm.provision "shell", inline: "sudo yum -y install git"
   end
